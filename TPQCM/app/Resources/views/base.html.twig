@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+
+    {% block customCss %}<!-- Place for custom css -->{% endblock %}
+
+    <script src="{{ asset("js/jquery.js") }}"></script>
+    <script src="{{ asset("js/validator.js") }}"></script>
+    {% block titre %}<title>QCM</title>{% endblock %}
+</head>
+<body>
+<div class="container">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('qcm_homepage') }}">QCM</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('qcmCreate_index') }}">Créer un QCM</a></li>
+                <li><a href="{{ path('qcmAnswer_index') }}">Répondre à un QCM</a></li>
+                <li><a href="{{ path('qcmResults_index') }}">Résultats</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</div>
+<div class="container">
+    <section id="content">
+        {% for msg in app.session.flashBag.get('success') %}
+            <div class="alert alert-success">
+                {{ msg }}
+            </div>
+        {% endfor %}
+
+        {% block content %}
+        {% endblock %}
+    </section>
+</div>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="{{ asset("js/bootstrap.js") }}"></script>
+</body>
+</html>
